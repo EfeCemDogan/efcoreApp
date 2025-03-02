@@ -9,4 +9,5 @@ namespace efcoreApp.Data
         public string? Eposta { get; set; }
         public string? Telefon { get; set; }
     }
+    
 }
