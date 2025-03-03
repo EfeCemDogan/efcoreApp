@@ -1,4 +1,4 @@
-namespace efcoreapp.Data
+namespace efcoreApp.Data
 {
     public class Kurs 
     {

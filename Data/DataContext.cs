@@ -1,4 +1,4 @@
-using efcoreapp.Data;
+using efcoreApp.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace efcoreApp.Data
