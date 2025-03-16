@@ -1,5 +1,6 @@
 using efcoreApp.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace efcoreApp.Controllers
@@ -14,11 +15,13 @@ namespace efcoreApp.Controllers
    
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Kurslar.ToListAsync());
+            var kurslar = await _context.Kurslar.Include(k => k.Ogretmen).ToListAsync();
+            return View(kurslar);
         }
 
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            ViewBag.Ogretmenler = new SelectList(await _context.Ogretmenler.ToListAsync(), "OgretmenId", "AdSoyad");
             return View();
         }
 
@@ -102,6 +105,8 @@ namespace efcoreApp.Controllers
             {
                 return NotFound();
             }
+
+            ViewBag.Ogretmenler = new SelectList(await _context.Ogretmenler.ToListAsync(), "OgretmenId", "AdSoyad");
 
             return View(kurs);
         }
